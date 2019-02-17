@@ -22,47 +22,22 @@ class ViewController: UIViewController {
         
         let tabBarControl = storyboard?.instantiateViewController(withIdentifier: "MainTabController") as! MainTabController
         
-        var request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/login")! as URL)
-        var session = URLSession.shared
-        request.httpMethod = "POST"
-        
-        var params = ["email":emailTxt.text, "password":passTxt.text] as! Dictionary<String, String>
-        
-        do {
-            try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
-            print(request.httpBody)
-        } catch {
-            print("???")
-        }
-        
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        var task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
-            print("Response: \(response)")
-            var strData = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-            print("Body: \(strData)")
-            //print("Value: \(strData["message"])")
-            var err: NSError?
-            
-            do {
-                var json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as? [String:AnyObject]
+        requests().loginRequest(email: emailTxt.text!, password: passTxt.text!) { (response) in
+            if let response = response {
                 
-                var success = json?["success"] as? Int
+                var success = response["success"] as? Int
                 if success == 1 {
-                    print("Succes: \(success)")
                     DispatchQueue.main.async {
                         self.performSegue(withIdentifier: "loginSuccess", sender: self)
                     }
                 }
                 
-            } catch {
-                print("???")
+                //print(response)
+                print("SUCCESS")
+            } else {
+                print("FAILURE")
             }
-            
-        })
-        
-        task.resume()
+        }
         
     }
     

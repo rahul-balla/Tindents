@@ -23,47 +23,22 @@ class signupViewController: UIViewController {
     }
     
     @IBAction func createBtnPressed(_ sender: Any) {
-        var request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/createAccount")! as URL)
-        var session = URLSession.shared
-        request.httpMethod = "POST"
         
-        var params = ["email":emailLbl.text, "username":userLbl.text, "password":passLbl.text, "name":nameLbl.text] as! Dictionary<String, String>
-        
-        do {
-            try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
-            print(request.httpBody)
-        } catch {
-            print("???")
-        }
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        var task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
-            print("Response: \(response)")
-            var strData = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-            print("Body: \(strData)")
-            //print("Value: \(strData["message"])")
-            var err: NSError?
-            
-            do {
-                var json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as? [String:AnyObject]
+        requests().signupRequest(email: emailLbl.text!, username:userLbl.text!, password: passLbl.text!, name:nameLbl.text!) { (response) in
+            if let response = response {
                 
-                var success = json?["success"] as? Int
+                var success = response["success"] as? Int
                 if success == 1 {
-                    print("Succes: \(success)")
-                    
                     DispatchQueue.main.async {
                         self.performSegue(withIdentifier: "createSuccess", sender: self)
                     }
                 }
                 
-            } catch {
-                print("???")
+                print("SUCCESS")
+            } else {
+                print("FAILURE")
             }
-            
-        })
-        
-        task.resume()
+        }
     }
     
     

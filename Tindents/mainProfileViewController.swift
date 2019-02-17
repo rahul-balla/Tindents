@@ -16,7 +16,6 @@ class mainProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("WHAT THE FUCK")
         
         var request = NSMutableURLRequest(url: NSURL(string: "http://127.0.0.1:5000/profile")! as URL)
         request.httpMethod = "GET"
@@ -53,7 +52,12 @@ class mainProfileViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func logoutBtn(_ sender: Any) {
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "logoutSegue", sender: self)
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

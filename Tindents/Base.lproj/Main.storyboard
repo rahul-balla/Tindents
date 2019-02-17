@@ -220,6 +220,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJd-59-pKb">
+                                <rect key="frame" x="99" y="515" width="177" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logoutBtn:" destination="y1Y-8r-qag" eventType="touchUpInside" id="ir4-xt-8a5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="EO2-Ui-JVt"/>
@@ -228,11 +236,12 @@
                     <connections>
                         <outlet property="fullNameLbl" destination="DNZ-mA-5nu" id="OXG-XV-r4v"/>
                         <outlet property="usernameLbl" destination="U2S-IO-wk4" id="IgO-R6-KGo"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="logoutSegue" id="NUL-Xt-jrv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BaV-f6-lkW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-335.19999999999999" y="1682.608695652174"/>
+            <point key="canvasLocation" x="-335" y="1398"/>
         </scene>
         <!--Feed-->
         <scene sceneID="h5T-b9-UBx">
@@ -539,6 +548,17 @@
                                     <action selector="medSwitchWithSender:" destination="ROP-YX-6FQ" eventType="valueChanged" id="emy-gZ-oca"/>
                                 </connections>
                             </switch>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bdP-O8-lTl">
+                                <rect key="frame" x="261" y="69" width="98" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Update">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="updateBtnPressed:" destination="ROP-YX-6FQ" eventType="touchUpInside" id="KtR-zd-kB7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -552,10 +572,13 @@
                     <tabBarItem key="tabBarItem" title="Settings" image="Settings" landscapeImage="Settings" largeContentSizeImage="Settings" selectedImage="Settings" id="3D0-Ey-b2d">
                         <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="updateBtn" destination="bdP-O8-lTl" id="1nT-L3-Hrq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mT5-vs-H3S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="614" y="-778"/>
+            <point key="canvasLocation" x="613.60000000000002" y="-778.56071964017997"/>
         </scene>
         <!--Main Tab Controller-->
         <scene sceneID="UHj-cO-FUX">
@@ -706,6 +729,6 @@
         <image name="Settings" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="I6n-zO-PAd"/>
+        <segue reference="NUL-Xt-jrv"/>
     </inferredMetricsTieBreakers>
 </document>
