@@ -9,16 +9,6 @@
 import UIKit
 
 class SwipingViewController: UIViewController {
-    
-    //    var name: String!
-    //    var subjects: [String]!
-    //    var tutorEmail: String!
-    //    var rating: String?
-    //    var picture: UIImage?
-    //    var description: String?
-    //
-    //
-
     @IBOutlet weak var card: UIView!
     @IBOutlet weak var nameText: UILabel!
     @IBOutlet weak var ageNum: UILabel!
